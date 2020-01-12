@@ -30,6 +30,7 @@ Logging
     LoggingInCommonList @{LIST}
     LoggingInCommonString ${URL}
     log  ${var2}
+    loggingwitharguments  test1  test2
 
 
 

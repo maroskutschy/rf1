@@ -19,6 +19,12 @@ LoggingInCommonString ${URL}
     log  ${PRODUCT}
     log  ${VARx}
 
+LoggingWithArguments
+    [Arguments]  ${arg1}  ${arg2}
+    log  ${arg1}
+    log  ${arg2}
+
+
 
 
 
