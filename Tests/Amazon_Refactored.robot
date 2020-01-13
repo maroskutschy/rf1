@@ -18,7 +18,7 @@ ${VARx}  valueX
 
 
 *** Test Cases ***
-User must Sign in Refactored
+User must Sign in Refactored 2
     [Tags]    DEBUG
     [Documentation]  Basic Test
     Amazon_Resource.Search for Products ${PRODUCT}
