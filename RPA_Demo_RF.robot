@@ -1,5 +1,6 @@
 # how to run whole file:
 # robot --pythonpath /Users/Maros/Python/PyCharm/Amayon/ RPA_Demo_RF.robot
+# robot --pythonpath c:\PyCharm_Projects_2\RF_1\rf1\ RPA_Demo_RF.robot
 *** Settings ***
 Documentation    Suite description
 Library  Pdf2TextLibrary
@@ -10,7 +11,7 @@ Library  ImapLibrary2
 *** Variables ***
 
 *** Test Cases ***
-Read text in pdf
+Read text from pdf
     ${data} =  convert pdf to txt  RF_1.pdf
     set global variable  ${global_data}  ${data.strip()}
     log  Text from PDF: ${global_data}
@@ -24,9 +25,12 @@ Read text from email
     open mailbox  host=imap.googlemail.com  user=jasecudeveloper1@gmail.com    password=Jasecu11
     ${LATEST} =  wait for email  sender=jasecudeveloper1@gmail.com
     ${email_body}  get email body  ${LATEST}
-    log  ${email_body}
-    should contain  ${email_body}  ${global_data}
+    set global variable  ${global_email_body}  ${email_body}
+    log  Email body is: ${global_email_body}
+
+Compare text from PDF and from email
+    should contain  ${global_email_body}  ${global_data}
     # the following step will fail
-    #should contain  ${global_data}  ${email_body}
+    #should contain  ${global_data}  ${global_email_body}
 
 
