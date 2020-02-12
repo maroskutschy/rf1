@@ -7,6 +7,8 @@ Library  Pdf2TextLibrary
 Library  MyLibrary
 Library  GmailSendEmailLibrary
 Library  ImapLibrary2
+Library  ExcelLibrary
+Library  SeleniumLibrary
 
 *** Variables ***
 
@@ -32,5 +34,26 @@ Compare text from PDF and from email
     should contain  ${global_email_body}  ${global_data}
     # the following step will fail
     #should contain  ${global_data}  ${global_email_body}
+
+Test excel - write text to xlsx file and read text from xlsx file
+  open excel document  Excel01.xlsx  document1
+  ${a1}=  read excel cell  row_num=1	col_num=1
+  Should Be Equal As Strings  ${a1}  a
+  ${a3_a}=  read excel cell  row_num=3	col_num=1
+  Should Be Equal As Strings  ${a3_a}  None
+  write excel cell  row_num=3	col_num=1  value=e
+  save excel document  Excel01.xlsx
+  ${a3_b}=  read excel cell  row_num=3	col_num=1
+  Should Be Equal As Strings  ${a3_b}  e
+  write excel cell  row_num=3	col_num=1  value=None
+  save excel document  Excel01.xlsx
+  ${a3_c}=  read excel cell  row_num=3	col_num=1
+  Should Be Equal As Strings  ${a3_c}  None
+
+Open webpage
+    open Browser  http://www.googe.com  chrome
+    wait until page contains  Google Search
+    input text  name=q  Robotic Process Automation
+    close browser
 
 
