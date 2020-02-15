@@ -1,6 +1,8 @@
 # how to run whole file:
 # robot --pythonpath /Users/Maros/Python/PyCharm/Amayon/ RPA_Demo_RF.robot
 # robot --pythonpath c:\PyCharm_Projects_2\RF_1\rf1\ RPA_Demo_RF.robot
+# where is stored chromedriver.exe:
+# c:\Users\maros.kutschy\AppData\Local\Programs\Python\Python38-32\Scripts\chromedriver.exe
 *** Settings ***
 Documentation    Suite description
 Library  Pdf2TextLibrary
@@ -51,8 +53,8 @@ Test excel - write text to xlsx file and read text from xlsx file
   Should Be Equal As Strings  ${a3_c}  None
 
 Open webpage
-    open Browser  http://www.googe.com  chrome
-    wait until page contains  Google Search
+    open Browser  http://www.google.com  chrome
+    wait until page contains  Sign in
     input text  name=q  Robotic Process Automation
     close browser
 
