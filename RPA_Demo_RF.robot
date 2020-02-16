@@ -14,6 +14,9 @@ Library  SeleniumLibrary
 
 *** Variables ***
 
+${GMAIL_USER}  rpademouser1@gmail.com
+${GMAIL_PASSWORD}  Rpademo1?
+
 *** Test Cases ***
 Read text from pdf
     ${data} =  convert pdf to txt  RF_1.pdf
@@ -23,12 +26,12 @@ Read text from pdf
     log  Number of pages in pdf: ${number_of_pages}
 
 Send text by email
-    send mail no attachment  jasecudeveloper1@gmail.com  Jasecu11  jasecudeveloper1@gmail.com  This is a test, this is a test  ${global_data}
+    send mail no attachment  ${GMAIL_USER}  ${GMAIL_PASSWORD}  ${GMAIL_USER}  Email from Robot Framework  ${global_data}
 
 Read text from email
-    open mailbox  host=imap.googlemail.com  user=jasecudeveloper1@gmail.com    password=Jasecu11
-    ${LATEST} =  wait for email  sender=jasecudeveloper1@gmail.com
-    ${email_body}  get email body  ${LATEST}
+    open mailbox  host=imap.googlemail.com  user= ${GMAIL_USER}    password= ${GMAIL_PASSWORD}
+    ${latest} =  wait for email  sender= ${GMAIL_USER}
+    ${email_body}  get email body  ${latest}
     set global variable  ${global_email_body}  ${email_body}
     log  Email body is: ${global_email_body}
 
